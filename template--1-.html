@@ -364,6 +364,8 @@ display: none;
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>library(readxl)
+library(haven)</code></pre>
 <p>let’s import ‘FAS_litters.csv’ csv using a relative path.</p>
 <pre class="r"><code>litters_df = 
   read_csv(&quot;data/FAS_litters.csv&quot;)</code></pre>
@@ -695,6 +697,15 @@ display: none;
       cols(
         &#39;GD0 weight&#39; = col_character()
       ))</code></pre>
+</div>
+<div id="other-file-types" class="section level2">
+<h2>other file types</h2>
+<p>important a xlsx file first</p>
+<pre class="r"><code>mlb_df = 
+  read_excel(&quot;data/mlb11.xlsx&quot;)</code></pre>
+<p>import a SAS file</p>
+<pre class="r"><code>pulse_df = 
+  read_sas(&quot;data/public_pulse_data.sas7bdat&quot;)</code></pre>
 </div>
 
 
