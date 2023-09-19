@@ -707,6 +707,24 @@ library(haven)</code></pre>
 <pre class="r"><code>pulse_df = 
   read_sas(&quot;data/public_pulse_data.sas7bdat&quot;)</code></pre>
 </div>
+<div id="export-data" class="section level2">
+<h2>export data</h2>
+<p>we have code that “cleans” data and need to export</p>
+<pre class="r"><code>litters_df_cleaned = 
+  read_csv(&quot;data/FAS_litters.csv&quot;)</code></pre>
+<pre><code>## Rows: 49 Columns: 8
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (2): Group, Litter Number
+## dbl (6): GD0 weight, GD18 weight, GD of Birth, Pups born alive, Pups dead @ ...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>litters_df_cleaned =
+  janitor::clean_names(litters_df_cleaned)
+
+write_csv(litters_df_cleaned, &quot;data/litters_cleaned.csv&quot;)</code></pre>
+</div>
 
 
 
