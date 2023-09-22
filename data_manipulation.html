@@ -364,6 +364,11 @@ display: none;
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<div id="load-in-the-fas-litters-data" class="section level2">
+<h2>load in the FAS Litters data</h2>
+<pre class="r"><code>litters_df = read.csv(&quot;./data/FAS_litters.csv&quot;)
+litters_df = janitor :: clean_names(litters_df)</code></pre>
+</div>
 
 
 
