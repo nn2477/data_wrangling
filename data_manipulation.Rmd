@@ -14,3 +14,45 @@ litters_df = read.csv("./data/FAS_litters.csv")
 litters_df = janitor :: clean_names(litters_df)
 ```
 
+## look at select function
+
+choose some columns and not others 
+
+```{r}
+#only keep those two columns
+select(litters_df, group, gd0_weight)
+```
+```{r}
+#can also look at gd0_weight
+select(litters_df, group, gd0_weight:gd_of_birth)
+```
+```{r}
+#can specify what we want to get rid of 
+select(litters_df, -litter_number)
+```
+
+renaming columns
+```{r}
+select(litters_df, GROUP = group, LITTer_NumBer = litter_number)
+```
+```{r}
+#dedicating function in dplyr
+rename(litters_df, GROUp = group, LITTer_NumBer = litter_number)
+```
+
+select helpers -- want to use functions that help me select columns that i know i want to keep based on some criteria 
+```{r}
+select(litters_df, starts_with("gd"))
+```
+
+```{r}
+#moves litter_number to front and keep everything else 
+select(litters_df, litter_number, everything())
+```
+
+```{r}
+#does the same thing -- select is the key function but there could be other functions that do the same thing
+relocate(litters_df, litter_number)
+```
+
+
