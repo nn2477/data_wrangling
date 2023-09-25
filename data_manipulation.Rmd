@@ -118,5 +118,25 @@ goal is to put things in order -- don't use that often
 arrange(litters_df, pups_born_alive)
 ```
 
+## pipe operation `%>%` 
 
+DO NOT DO THIS (NESTING)
+```{r}
+litters_df_raw = read_csv("./data/FAS_litters.csv")
+litters_clean_name = janitor::clean_names(litters_df_raw)
+litters_data_selected = select(litters_clean_name, -pups_survive)
+litters_mutated = mutate(litters_data_selected, wt_gain = gd18_weight - gd0_weight)
+litters_without_missing = drop_na(litters_mutated, gd0_weight)
+```
+
+instead, USE PIPE OPERATOR INSTEAD (shift, command, m) 
+  - easier to read and take a look at 
+```{r}
+litters_df = 
+  read_csv("./data/FAS_litters.csv") %>% 
+  janitor::clean_names() %>% 
+  select(-pups_survive) %>% 
+  mutate(wt_gain = gd18_weight - gd0_weight) %>% 
+  drop_na(gd0_weight)
+```
 

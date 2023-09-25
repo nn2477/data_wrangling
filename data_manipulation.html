@@ -1579,6 +1579,39 @@ mutate(
 ## 48               0            7
 ## 49               0            9</code></pre>
 </div>
+<div id="pipe-operation" class="section level2">
+<h2>pipe operation <code>%&gt;%</code></h2>
+<p>DO NOT DO THIS (NESTING)</p>
+<pre class="r"><code>litters_df_raw = read_csv(&quot;./data/FAS_litters.csv&quot;)</code></pre>
+<pre><code>## Rows: 49 Columns: 8
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (2): Group, Litter Number
+## dbl (6): GD0 weight, GD18 weight, GD of Birth, Pups born alive, Pups dead @ ...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>litters_clean_name = janitor::clean_names(litters_df_raw)
+litters_data_selected = select(litters_clean_name, -pups_survive)
+litters_mutated = mutate(litters_data_selected, wt_gain = gd18_weight - gd0_weight)
+litters_without_missing = drop_na(litters_mutated, gd0_weight)</code></pre>
+<p>instead, USE PIPE OPERATOR INSTEAD (shift, command, m) - easier to
+read and take a look at</p>
+<pre class="r"><code>litters_df = 
+  read_csv(&quot;./data/FAS_litters.csv&quot;) %&gt;% 
+  janitor::clean_names() %&gt;% 
+  select(-pups_survive) %&gt;% 
+  mutate(wt_gain = gd18_weight - gd0_weight) %&gt;% 
+  drop_na(gd0_weight)</code></pre>
+<pre><code>## Rows: 49 Columns: 8
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (2): Group, Litter Number
+## dbl (6): GD0 weight, GD18 weight, GD of Birth, Pups born alive, Pups dead @ ...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
 </div>
 
 
