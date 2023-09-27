@@ -1,6 +1,6 @@
 ---
-title: "Simple document"
-output: html_document
+title: "data import"
+output: github_document
 ---
 
 ```{r}
